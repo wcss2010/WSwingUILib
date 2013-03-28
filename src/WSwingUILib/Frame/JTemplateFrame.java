@@ -98,7 +98,7 @@ public class JTemplateFrame extends javax.swing.JFrame {
      *
      * @param string
      */
-    private void setStatusText(String string) {
+    public void setStatusText(String string) {
         this.status.setStatusText(string);
     }
 
@@ -107,7 +107,7 @@ public class JTemplateFrame extends javax.swing.JFrame {
      *
      * @param string
      */
-    private void setVersionText(String string) {
+    public void setVersionText(String string) {
         this.status.setVersionText(string);
     }
 
