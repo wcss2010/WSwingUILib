@@ -427,7 +427,7 @@ public class JTemplateFrame extends javax.swing.JFrame {
     }
 
     /**
-     * 显示内容面板
+     * 显示内容面板(必须从JMiddleContentPanel继承)
      *
      * @param content
      */
