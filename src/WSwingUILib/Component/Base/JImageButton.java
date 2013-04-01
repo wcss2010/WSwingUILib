@@ -22,14 +22,17 @@ public class JImageButton extends javax.swing.JPanel
     public ImageIcon currentImage;
     public Boolean enabledSwitchOverImage;
     public Boolean enabledSwitchPressImage;
-    public String buttonText;
+    private String buttonText;
     public Boolean isButtonClicked = false;
+    private Font font;
 
     /**
      *  基础构造函数
      */
     public JImageButton() {
         initComponents();
+        this.setFont(new Font("文泉驿微米黑", 0, 14));
+        this.setSize(90, 30);
     }
 
     /**
@@ -73,18 +76,18 @@ public class JImageButton extends javax.swing.JPanel
             g2d.setColor(this.getBackground());
             g2d.fillRect(0, 0, this.getWidth(), this.getHeight());   
             g2d.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-            if (this.buttonText != null && !this.buttonText.isEmpty()) {
+            if (this.getButtonText() != null && !this.buttonText.isEmpty()) {
                 int paintx = 0;
                 int painty = 0;
                 FontMetrics FM;
                 int Ascent, Descent;
-                FM = g.getFontMetrics(); //取得FontMetrics类实体
+                FM = g.getFontMetrics(getFont()); //取得FontMetrics类实体                
                 Ascent = FM.getAscent(); //取得Ascent
                 Descent = FM.getDescent(); //取得Descent
                 //Rectangle2D rect = g.getFontMetrics().s.getStringBounds(buttonText, g);
-                paintx = (this.getWidth() - FM.stringWidth(buttonText)) / 2;
+                paintx = (this.getWidth() - FM.stringWidth(getButtonText())) / 2;
                 painty = (this.getHeight() - (Ascent + Descent)) / 2 + Ascent;
-                g2d.drawString(buttonText, paintx, painty);
+                g2d.drawString(getButtonText(), paintx, painty);
             }
         } else {
             super.paintComponent(g);
@@ -173,4 +176,34 @@ public class JImageButton extends javax.swing.JPanel
     }//GEN-LAST:event_formMouseExited
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the buttonText
+     */
+    public String getButtonText() {
+        return buttonText;
+    }
+
+    /**
+     * @param buttonText the buttonText to set
+     */
+    public void setButtonText(String buttonText) {
+        this.buttonText = buttonText;
+        this.nowPaint();
+    }
+
+    /**
+     * @return the font
+     */
+    public Font getFont() {
+        return font;
+    }
+
+    /**
+     * @param font the font to set
+     */
+    public void setFont(Font font) {
+        this.font = font;
+        this.nowPaint();
+    }
 }

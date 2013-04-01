@@ -5,6 +5,7 @@
 package WSwingUILib.Component;
 
 import WSwingUILib.Component.Base.JImagePanel;
+import WSwingUILib.Frame.JTemplateFrame;
 
 /**
  *
@@ -17,6 +18,11 @@ public class JMiddleContentPanel extends JImagePanel
         this.setImageIconFromResource("/WSwingUILib/UIImage/contentbar.png", false);
     }    
 
+    /**
+     * 主面板
+     */
+    private JTemplateFrame mainPanel;
+    
     /**
      * 载入内容
      */
@@ -31,5 +37,19 @@ public class JMiddleContentPanel extends JImagePanel
     public void close()
     {
         
+    }
+
+    /**
+     * @return the mainPanel
+     */
+    public JTemplateFrame getMainPanel() {
+        return mainPanel;
+    }
+
+    /**
+     * @param mainPanel the mainPanel to set
+     */
+    public void setMainPanel(JTemplateFrame mainPanel) {
+        this.mainPanel = mainPanel;
     }
 }

@@ -29,18 +29,22 @@ public class JTemplateFrame extends javax.swing.JFrame {
     public JTabButton[] sysTabList = null;
     public JMiddleContentPanel currentShowPanel = null;
 
+    public JTabButton[] getTabPages() {
+        return sysTabList;
+    }
+
     /**
      * 所有的UI界面使用 文泉驿微米黑 字体
      */
-    public static void useDefaultFontConfig()
-    {
-        updateUIFontConfig("文泉驿微米黑",12);
+    public static void useDefaultFontConfig() {
+        updateUIFontConfig("文泉驿微米黑", 12);
     }
-    
+
     /**
      * 更新界面中字体设置
+     *
      * @param fontName
-     * @param fontSize 
+     * @param fontSize
      */
     public static void updateUIFontConfig(String fontName, int fontSize) {
 
@@ -59,14 +63,14 @@ public class JTemplateFrame extends javax.swing.JFrame {
     public JTemplateFrame() {
         initComponents();
         sysTabList = new JTabButton[]{tab1, tab2, tab3, tab4, tab5, tab6};
-        hideAllTabButton();
+        hideAllTabPage();
         this.setLocationRelativeTo(null);
         this.setAppIcoFromResource("/WSwingUILib/UIImage/appico.png");
         this.setSoftName("此处是软件名称");
         this.setSoftInfo("此处是软件说明");
         this.setStatusText("状态");
         this.setVersionText("版本");
-        
+
 //        this.setActiveTabButton(0,"1" , JImagePanel.getImageIconObjFromResource("/WSwingUILib/UIImage/devicestate.png"),new TestPanel());
 //        this.setActiveTabButton(1,"2" , JImagePanel.getImageIconObjFromResource("/WSwingUILib/UIImage/devicestate.png"),new TestPanel());
 //        this.setActiveTabButton(2,"3" , JImagePanel.getImageIconObjFromResource("/WSwingUILib/UIImage/devicestate.png"),new TestPanel());
@@ -127,6 +131,15 @@ public class JTemplateFrame extends javax.swing.JFrame {
      */
     public void setSoftInfo(String text) {
         this.lblAppInfo.setText(text);
+    }
+
+    /**
+     * 此方法提供询问是否退出的接口
+     *
+     * @return
+     */
+    public Boolean closing() {
+        return true;
     }
 
     /**
@@ -331,9 +344,9 @@ public class JTemplateFrame extends javax.swing.JFrame {
         plTotalContentLayout.setVerticalGroup(
             plTotalContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plTotalContentLayout.createSequentialGroup()
-                .addComponent(plMiddleContent, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addComponent(plMiddleContent, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout plTotalLayout = new javax.swing.GroupLayout(plTotal);
@@ -388,8 +401,10 @@ public class JTemplateFrame extends javax.swing.JFrame {
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         // TODO add your handling code here:
-        if (JOptionPane.showConfirmDialog(null, closeMsgBoxContent, closeMsgBoxCaption, JOptionPane.YES_NO_OPTION) == 0) {
-            System.exit(0);
+        if (closing()) {
+            if (JOptionPane.showConfirmDialog(null, closeMsgBoxContent, closeMsgBoxCaption, JOptionPane.YES_NO_OPTION) == 0) {
+                System.exit(0);
+            }
         }
     }//GEN-LAST:event_btnCloseMouseClicked
 
@@ -401,7 +416,7 @@ public class JTemplateFrame extends javax.swing.JFrame {
     /**
      * 隐藏所有标签按钮
      */
-    public void hideAllTabButton() {
+    public void hideAllTabPage() {
         for (JTabButton jtb : sysTabList) {
             jtb.setVisible(false);
         }
@@ -415,7 +430,7 @@ public class JTemplateFrame extends javax.swing.JFrame {
      * @param image
      * @param content
      */
-    public void setActiveTabButton(int index, String name, ImageIcon image, JMiddleContentPanel content) {
+    public void setTabPage(int index, String name, ImageIcon image, JMiddleContentPanel content) {
         if (index >= 0 && index <= 5) {
             if (image != null && content != null) {
                 sysTabList[index].setVisible(true);
@@ -431,18 +446,17 @@ public class JTemplateFrame extends javax.swing.JFrame {
      *
      * @param content
      */
-    public void showContentPanel(JMiddleContentPanel contents) 
-    {
+    public void showContentPanel(JMiddleContentPanel contents) {
         this.plMiddleContent.removeAll();
         contents.setLocation(0, 0);
         contents.setSize(this.plMiddleContent.getWidth(), this.plMiddleContent.getHeight());
-        
-        if (currentShowPanel != null)
-        {
+
+        if (currentShowPanel != null) {
             currentShowPanel.close();
         }
-        
+
         currentShowPanel = contents;
+        currentShowPanel.setMainPanel(this);
         this.plMiddleContent.add(currentShowPanel);
         this.plMiddleContent.validate();//重构内容面板
         this.plMiddleContent.repaint();//重绘内容面板
@@ -452,19 +466,19 @@ public class JTemplateFrame extends javax.swing.JFrame {
     /**
      * 清理按下状态
      */
-    public void clearPressStatus() {
+    public void clearTabPageStatus() {
         for (JTabButton jtb : sysTabList) {
             jtb.processReleaseButton();
         }
     }
 
     /**
-     * 选择标签页
+     * 设置活动标签页
      *
      * @param tabIndex
      */
-    public void selectTabPage(int tabIndex) {
-        clearPressStatus();
+    public void setActiveTabPage(int tabIndex) {
+        clearTabPageStatus();
         if (tabIndex >= 0 && tabIndex <= 5) {
             sysTabList[tabIndex].processPressButton();
             showContentPanel(sysTabList[tabIndex].content);
@@ -473,32 +487,32 @@ public class JTemplateFrame extends javax.swing.JFrame {
 
     private void tab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab1MouseClicked
         // TODO add your handling code here:
-        selectTabPage(0);
+        setActiveTabPage(0);
     }//GEN-LAST:event_tab1MouseClicked
 
     private void tab2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab2MouseClicked
         // TODO add your handling code here:
-        selectTabPage(1);
+        setActiveTabPage(1);
     }//GEN-LAST:event_tab2MouseClicked
 
     private void tab3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab3MouseClicked
         // TODO add your handling code here:
-        selectTabPage(2);
+        setActiveTabPage(2);
     }//GEN-LAST:event_tab3MouseClicked
 
     private void tab4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab4MouseClicked
         // TODO add your handling code here:
-        selectTabPage(3);
+        setActiveTabPage(3);
     }//GEN-LAST:event_tab4MouseClicked
 
     private void tab5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab5MouseClicked
         // TODO add your handling code here:
-        selectTabPage(4);
+        setActiveTabPage(4);
     }//GEN-LAST:event_tab5MouseClicked
 
     private void tab6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab6MouseClicked
         // TODO add your handling code here:
-        selectTabPage(5);
+        setActiveTabPage(5);
     }//GEN-LAST:event_tab6MouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private WSwingUILib.Component.Base.JImageButton btnClose;

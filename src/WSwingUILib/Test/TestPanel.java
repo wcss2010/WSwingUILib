@@ -41,6 +41,7 @@ public class TestPanel extends JMiddleContentPanel {
         jPanel1 = new javax.swing.JPanel();
         txt = new javax.swing.JLabel();
         txt2 = new javax.swing.JLabel();
+        jUIButton1 = new WSwingUILib.Component.JUIButton();
 
         setLayout(null);
 
@@ -51,6 +52,20 @@ public class TestPanel extends JMiddleContentPanel {
 
         txt2.setText("jLabel1");
 
+        jUIButton1.setButtonText("aaaa");
+        jUIButton1.setFont(new java.awt.Font("文泉驿微米黑", 0, 36)); // NOI18N
+
+        javax.swing.GroupLayout jUIButton1Layout = new javax.swing.GroupLayout(jUIButton1);
+        jUIButton1.setLayout(jUIButton1Layout);
+        jUIButton1Layout.setHorizontalGroup(
+            jUIButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 152, Short.MAX_VALUE)
+        );
+        jUIButton1Layout.setVerticalGroup(
+            jUIButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 31, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -60,16 +75,22 @@ public class TestPanel extends JMiddleContentPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
                     .addComponent(txt2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(878, Short.MAX_VALUE)
+                .addComponent(jUIButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(33, 33, 33)
+                .addComponent(jUIButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         add(jPanel1);
@@ -77,6 +98,7 @@ public class TestPanel extends JMiddleContentPanel {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private WSwingUILib.Component.JUIButton jUIButton1;
     private javax.swing.JLabel txt;
     private javax.swing.JLabel txt2;
     // End of variables declaration//GEN-END:variables
