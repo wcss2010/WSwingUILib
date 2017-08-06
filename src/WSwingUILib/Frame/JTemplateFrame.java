@@ -9,6 +9,7 @@ import WSwingUILib.Component.JMiddleContentPanel;
 import WSwingUILib.Component.JTabButton;
 import WSwingUILib.Test.TestPanel;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -79,6 +80,17 @@ public class JTemplateFrame extends javax.swing.JFrame {
 //        this.setActiveTabButton(5,"6" , JImagePanel.getImageIconObjFromResource("/WSwingUILib/UIImage/devicestate.png"),new TestPanel());
     }
 
+    /**
+     * 初始化
+     */
+    public void Init()
+    {
+       plTopButtonPanel.setSize(new Dimension((int)this.getSize().getWidth(),(int)plTopButtonPanel.getSize().getHeight()));
+       
+       btnClose.setLocation((int)this.getSize().getWidth() - (5 + (int)btnClose.getSize().getWidth()), (int)btnClose.getLocation().getY());
+       btnMin.setLocation((int)btnClose.getLocation().getX() - 5 - (int)btnMin.getSize().getWidth(),(int)btnMin.getLocation().getY());
+    }
+    
     /**
      * 从资源路径中设置程序图标
      *
@@ -156,14 +168,15 @@ public class JTemplateFrame extends javax.swing.JFrame {
         plAppIco = new WSwingUILib.Component.Base.JImagePanel();
         lblAppName = new javax.swing.JLabel();
         lblAppInfo = new javax.swing.JLabel();
-        btnMin = new WSwingUILib.Component.Base.JImageButton("/WSwingUILib/UIImage/min.png","/WSwingUILib/UIImage/minfocus.png","/WSwingUILib/UIImage/minfocus.png","",true,true);
-        btnClose = new WSwingUILib.Component.Base.JImageButton("/WSwingUILib/UIImage/close.png","/WSwingUILib/UIImage/closefocus.png","/WSwingUILib/UIImage/closefocus.png","",true,true);
         tab1 = new WSwingUILib.Component.JTabButton();
         tab2 = new WSwingUILib.Component.JTabButton();
         tab3 = new WSwingUILib.Component.JTabButton();
         tab4 = new WSwingUILib.Component.JTabButton();
         tab5 = new WSwingUILib.Component.JTabButton();
         tab6 = new WSwingUILib.Component.JTabButton();
+        plTopButtonPanel = new javax.swing.JPanel();
+        btnMin = new WSwingUILib.Component.Base.JImageButton("/WSwingUILib/UIImage/min.png","/WSwingUILib/UIImage/minfocus.png","/WSwingUILib/UIImage/minfocus.png","",true,true);
+        btnClose = new WSwingUILib.Component.Base.JImageButton("/WSwingUILib/UIImage/close.png","/WSwingUILib/UIImage/closefocus.png","/WSwingUILib/UIImage/closefocus.png","",true,true);
         plTotalContent = new WSwingUILib.Component.JMiddleContentPanel();
         plMiddleContent = new WSwingUILib.Component.JMiddleContentPanel();
         status = new WSwingUILib.Component.JBottomStatusPanel();
@@ -185,6 +198,7 @@ public class JTemplateFrame extends javax.swing.JFrame {
                 plTopContentMouseDragged(evt);
             }
         });
+        plTopContent.setLayout(null);
 
         javax.swing.GroupLayout plAppIcoLayout = new javax.swing.GroupLayout(plAppIco);
         plAppIco.setLayout(plAppIcoLayout);
@@ -197,13 +211,71 @@ public class JTemplateFrame extends javax.swing.JFrame {
             .addGap(0, 54, Short.MAX_VALUE)
         );
 
+        plTopContent.add(plAppIco);
+        plAppIco.setBounds(12, 29, 55, 54);
+
         lblAppName.setFont(new java.awt.Font("文泉驿微米黑", 0, 24)); // NOI18N
         lblAppName.setForeground(new java.awt.Color(255, 255, 255));
         lblAppName.setText("jLabel1");
+        plTopContent.add(lblAppName);
+        lblAppName.setBounds(79, 29, 272, 34);
 
         lblAppInfo.setFont(new java.awt.Font("文泉驿微米黑", 0, 18)); // NOI18N
         lblAppInfo.setForeground(new java.awt.Color(255, 255, 255));
         lblAppInfo.setText("jLabel1");
+        plTopContent.add(lblAppInfo);
+        lblAppInfo.setBounds(89, 69, 262, 34);
+
+        tab1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tab1MouseClicked(evt);
+            }
+        });
+        plTopContent.add(tab1);
+        tab1.setBounds(354, 29, 76, 78);
+
+        tab2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tab2MouseClicked(evt);
+            }
+        });
+        plTopContent.add(tab2);
+        tab2.setBounds(436, 29, 76, 78);
+
+        tab3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tab3MouseClicked(evt);
+            }
+        });
+        plTopContent.add(tab3);
+        tab3.setBounds(518, 29, 76, 78);
+
+        tab4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tab4MouseClicked(evt);
+            }
+        });
+        plTopContent.add(tab4);
+        tab4.setBounds(600, 29, 76, 78);
+
+        tab5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tab5MouseClicked(evt);
+            }
+        });
+        plTopContent.add(tab5);
+        tab5.setBounds(682, 29, 76, 78);
+
+        tab6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tab6MouseClicked(evt);
+            }
+        });
+        plTopContent.add(tab6);
+        tab6.setBounds(764, 29, 76, 78);
+
+        plTopButtonPanel.setOpaque(false);
+        plTopButtonPanel.setLayout(null);
 
         btnMin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -219,8 +291,11 @@ public class JTemplateFrame extends javax.swing.JFrame {
         );
         btnMinLayout.setVerticalGroup(
             btnMinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 23, Short.MAX_VALUE)
         );
+
+        plTopButtonPanel.add(btnMin);
+        btnMin.setBounds(818, 0, 24, 23);
 
         btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -239,98 +314,11 @@ public class JTemplateFrame extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        tab1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab1MouseClicked(evt);
-            }
-        });
+        plTopButtonPanel.add(btnClose);
+        btnClose.setBounds(850, 0, 24, 23);
 
-        tab2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab2MouseClicked(evt);
-            }
-        });
-
-        tab3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab3MouseClicked(evt);
-            }
-        });
-
-        tab4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab4MouseClicked(evt);
-            }
-        });
-
-        tab5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab5MouseClicked(evt);
-            }
-        });
-
-        tab6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab6MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout plTopContentLayout = new javax.swing.GroupLayout(plTopContent);
-        plTopContent.setLayout(plTopContentLayout);
-        plTopContentLayout.setHorizontalGroup(
-            plTopContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plTopContentLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(plTopContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plTopContentLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plTopContentLayout.createSequentialGroup()
-                        .addComponent(plAppIco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(plTopContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(plTopContentLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(lblAppInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblAppName, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addComponent(tab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tab2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tab4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tab5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tab6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(44, Short.MAX_VALUE))))
-        );
-        plTopContentLayout.setVerticalGroup(
-            plTopContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plTopContentLayout.createSequentialGroup()
-                .addGroup(plTopContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(plTopContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(plTopContentLayout.createSequentialGroup()
-                        .addComponent(lblAppName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAppInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(plAppIco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        plTopContent.add(plTopButtonPanel);
+        plTopButtonPanel.setBounds(0, 0, 884, 23);
 
         plMiddleContent.setLayout(null);
 
@@ -521,6 +509,7 @@ public class JTemplateFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblAppName;
     private WSwingUILib.Component.Base.JImagePanel plAppIco;
     private WSwingUILib.Component.JMiddleContentPanel plMiddleContent;
+    private javax.swing.JPanel plTopButtonPanel;
     private WSwingUILib.Component.JTopContentPanel plTopContent;
     private WSwingUILib.Component.JTopContentPanel plTotal;
     private WSwingUILib.Component.JMiddleContentPanel plTotalContent;

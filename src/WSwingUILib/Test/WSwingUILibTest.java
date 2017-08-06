@@ -45,7 +45,10 @@ public class WSwingUILibTest {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() 
             {
-                new JTemplateFrame().setVisible(true);
+                JTemplateFrame jft = new JTemplateFrame();
+                jft.setSize(700, 300);
+                jft.Init();
+                jft.setVisible(true);
             }
         });
     }
